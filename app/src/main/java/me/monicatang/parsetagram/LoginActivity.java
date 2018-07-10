@@ -26,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        checkCurrentUser();
+
         ButterKnife.bind(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -37,6 +39,16 @@ public class LoginActivity extends AppCompatActivity {
                 logIn(username, password);
             }
         });
+    }
+
+    private void checkCurrentUser() {
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+            Log.e("LoginActivity", "Login successful!");
+            startActivity(intent);
+            finish();
+        }
     }
 
     private void logIn(String username, String password) {

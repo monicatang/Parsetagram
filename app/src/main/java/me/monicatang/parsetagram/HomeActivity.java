@@ -1,5 +1,6 @@
 package me.monicatang.parsetagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.etDescription) EditText etDescription;
     @BindView(R.id.btnCreate) Button btnCreate;
     @BindView(R.id.btnRefresh) Button btnRefresh;
+    @BindView(R.id.btnLogout) Button btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,24 @@ public class HomeActivity extends AppCompatActivity {
                 loadTopPosts();
             }
         });
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logOut();
+            }
+        });
+    }
+
+    private void logOut() {
+        ParseUser.logOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+        if(ParseUser.getCurrentUser() == null) {
+            Log.i("Logout", "Log out successful"); // this will now be null
+        }
+
     }
 
     private void createPost(String description, ParseFile imageFile, ParseUser user) {

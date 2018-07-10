@@ -31,4 +31,14 @@
         android:layout_toRightOf="@+id/btnCreate"
         android:layout_below="@+id/etDescription"/>
 
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Log Out"
+        android:layout_toRightOf="@+id/btnRefresh"
+        android:layout_below="@+id/etDescription"/>
+
+
 </RelativeLayout>
