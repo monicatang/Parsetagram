@@ -26,8 +26,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Check if existing user is logged in
         checkCurrentUser();
 
+        // Resolve view lookups
         ButterKnife.bind(this);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {

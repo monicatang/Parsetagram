@@ -18,6 +18,8 @@
     <color name="blue_7">#ff0053a4</color>
     <color name="black">#000</color>
     <color name="grey_9">#ff262626</color>
+    <color name="grey_1_30_transparent">#4defefef</color>
+    <color name="grey_1_80_transparent">#ccefefef</color>
     <color name="direct_gradient_dim_start">@color/indigo</color>
     <color name="direct_gradient_dim_end">@color/blueteal_5</color>
     <color name="direct_gradient_bright_start">@color/blueteal_5</color>
