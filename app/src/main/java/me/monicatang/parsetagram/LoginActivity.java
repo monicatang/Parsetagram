@@ -1,5 +1,6 @@
 package me.monicatang.parsetagram;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -44,6 +45,10 @@ public class LoginActivity extends AppCompatActivity {
             public void done(ParseUser user, ParseException e) {
                 if (e == null) {
                     Log.e("LoginActivity", "Login successful!");
+                    final Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+
                 } else {
                     Log.e("LoginActivity", "Login failure.");
                     e.printStackTrace();

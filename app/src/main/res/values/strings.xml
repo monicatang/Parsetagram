@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Parsetagram</string>
     <string name="login">Log In</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="description_hint">Enter a description</string>
 </resources>

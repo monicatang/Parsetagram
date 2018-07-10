@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/angle_gradient"
+    tools:context=".SplashActivity">
+
+    <ImageView
+        android:id="@+id/ivCamera"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/camera_shadow_fill" />
+
+    <ImageView
+        android:id="@+id/ivWhiteLogo"
+        android:layout_width="210dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/ivCamera"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/nux_dayone_landing_logo" />
+</RelativeLayout>
