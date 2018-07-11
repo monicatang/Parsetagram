@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -45,6 +46,7 @@ public class CreateActivity extends AppCompatActivity {
     @BindView(R.id.btnCapture) Button btnCapture;
     @BindView(R.id.ivPreview) ImageView ivPreview;
     @BindView(R.id.etDescription) EditText etDescription;
+    @BindView(R.id.pbLoading) ProgressBar pbLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,7 +118,7 @@ public class CreateActivity extends AppCompatActivity {
                 // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
-                Bitmap bMapScaled = bitmapScaler.scaleToFitHeight(takenImage, 250);
+                Bitmap bMapScaled = bitmapScaler.scaleToFitHeight(takenImage, 400);
                 // Configure byte output stream
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 // Compress the image further
@@ -143,6 +145,7 @@ public class CreateActivity extends AppCompatActivity {
 
     // Get photo description and upload file
     private void preparePost(String imagePath) {
+        pbLoading.setVisibility(ProgressBar.VISIBLE);
         final String description = etDescription.getText().toString();
         final ParseUser user = ParseUser.getCurrentUser();
 
@@ -174,6 +177,10 @@ public class CreateActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("HomeActivity", "Create post success!");
+                    Intent i = new Intent(CreateActivity.this, HomeActivity.class);
+                    pbLoading.setVisibility(ProgressBar.INVISIBLE);
+                    startActivity(i);
+                    finish();
                 } else {
                     e.printStackTrace();
                 }
