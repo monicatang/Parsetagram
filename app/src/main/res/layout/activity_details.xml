@@ -8,6 +8,7 @@
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         app:srcCompat="@android:color/black" />
 
@@ -33,7 +34,7 @@
         android:text="Description" />
 
     <TextView
-        android:id="@+id/tvRelativeTime"
+        android:id="@+id/tvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -41,6 +42,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_below="@+id/tvDescription"
-        android:text="Relative Time" />
+        android:text="Time" />
 
 </RelativeLayout>

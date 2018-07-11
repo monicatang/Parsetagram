@@ -1,6 +1,7 @@
 package me.monicatang.parsetagram;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,7 +37,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View postView = inflater.inflate(R.layout.item_post, parent, false);
-        ViewHolder viewHolder = new ViewHolder(postView);
+        ViewHolder viewHolder = new ViewHolder(postView, mPosts);
         return viewHolder;
     }
 
@@ -48,6 +49,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         //populate views
         holder.tvDescription.setText(post.getDescription());
         holder.tvUsername.setText(post.getUser().getUsername());
+        holder.tvRelativeTime.setText(post.getCreatedAt().toString());
 
         Glide.with(context).load(post.getImage().getUrl()).into(holder.ivImage);
 
@@ -60,20 +62,43 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     // create ViewHolder class
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         @BindView(R.id.ivImage) ImageView ivImage;
         @BindView(R.id.tvUsername) TextView tvUsername;
         @BindView(R.id.tvDescription) TextView tvDescription;
+        @BindView(R.id.tvRelativeTime) TextView tvRelativeTime;
 
-        public ViewHolder(View itemView) {
+        private List<Post> mPosts;
+
+        public ViewHolder(View itemView, List<Post> posts) {
             super(itemView);
 
             //resolve view lookups
             ButterKnife.bind(this, itemView);
+            mPosts = posts;
+
+            itemView.setOnClickListener(this);
 
         }
 
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            //ensure position is valid
+            if (position != RecyclerView.NO_POSITION) {
+                //get post at the position
+                Post post = mPosts.get(position);
+                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
+                //serialize post using parceler
+                intent.putExtra(Post.class.getSimpleName(), post);
+                //show activity
+                v.getContext().startActivity(intent);
+            }
+        }
+
     }
+
+
 
     // Clean all elements of the recycler
     public void clear() {

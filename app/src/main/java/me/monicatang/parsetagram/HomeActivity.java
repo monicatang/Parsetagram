@@ -27,7 +27,6 @@ public class HomeActivity extends AppCompatActivity {
     PostAdapter postAdapter;
 
     // Views
-    @BindView(R.id.btnRefresh) Button btnRefresh;
     @BindView(R.id.btnLogout) Button btnLogout;
     @BindView(R.id.btnCreate) Button btnCreate;
     @BindView(R.id.rvFeed) RecyclerView rvFeed;
@@ -53,13 +52,6 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(HomeActivity.this, CreateActivity.class);
                 startActivity(i);
-            }
-        });
-
-        btnRefresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadTopPosts();
             }
         });
 

@@ -53,8 +53,7 @@ public class SignupActivity extends AppCompatActivity {
         user.setPassword(password);
         user.setEmail(email);
 
-//        user.put("emailVerified", false);
-//        user.put("handle", username);
+        user.put("handle", username);
 
         // Invoke signUpInBackground
         user.signUpInBackground(new SignUpCallback() {
