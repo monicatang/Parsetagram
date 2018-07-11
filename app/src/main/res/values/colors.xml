@@ -17,6 +17,8 @@
     <color name="teal">#ff02dce5</color>
     <color name="blue_7">#ff0053a4</color>
     <color name="black">#000</color>
+    <color name="grey_4">#ffb2b2b2</color>
+    <color name="grey_7">#ff555555</color>
     <color name="grey_9">#ff262626</color>
     <color name="grey_1_30_transparent">#4defefef</color>
     <color name="grey_1_80_transparent">#ccefefef</color>

@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.etUsername) EditText etUsername;
     @BindView(R.id.etPassword) EditText etPassword;
     @BindView(R.id.btnLogin) Button btnLogin;
+    @BindView(R.id.btnSignup) Button btnSignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,14 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("LoginActivity", "Logging in...");
             }
         });
+
+        btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void checkCurrentUser() {
@@ -51,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
             Log.e("LoginActivity", "Login successful!");
             startActivity(intent);
             finish();
+        } else {
+            Log.e("LoginActivity", "No current user found");
         }
     }
 
