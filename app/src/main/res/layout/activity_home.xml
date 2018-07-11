@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-
     <Button
         android:id="@+id/btnRefresh"
         android:layout_width="wrap_content"
@@ -31,12 +30,21 @@
         android:text="Create"
         android:layout_toRightOf="@+id/btnLogout"/>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvFeed"
+    <android.support.v4.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_below="@id/btnCreate" />
+        android:layout_marginTop="80dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvFeed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/btnCreate" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

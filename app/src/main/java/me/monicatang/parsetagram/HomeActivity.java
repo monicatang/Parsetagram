@@ -2,6 +2,7 @@ package me.monicatang.parsetagram;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,6 +31,7 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.btnLogout) Button btnLogout;
     @BindView(R.id.btnCreate) Button btnCreate;
     @BindView(R.id.rvFeed) RecyclerView rvFeed;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +70,22 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                postAdapter.clear();
+                loadTopPosts();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
         loadTopPosts();
     }
-
-
 
     private void logOut() {
         ParseUser.logOut();
