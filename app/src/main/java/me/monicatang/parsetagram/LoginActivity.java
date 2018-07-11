@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
                 final String password = etPassword.getText().toString();
 
                 logIn(username, password);
+                Log.d("LoginActivity", "Logging in...");
             }
         });
     }

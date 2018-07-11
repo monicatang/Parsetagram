@@ -7,31 +7,6 @@
     android:layout_margin="30dp"
     tools:context=".HomeActivity">
 
-    <ImageView
-        android:id="@+id/ivPreview"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:background="@color/grey_1_80_transparent"
-        app:srcCompat="@drawable/camera_shadow_fill" />
-
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/description_hint"
-        android:inputType="textMultiLine"
-        android:layout_marginTop="30dp"
-        android:layout_below="@+id/ivPreview"/>
-
-    <Button
-        android:id="@+id/btnCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Create"
-        android:layout_below="@+id/etDescription"
-        android:layout_margin="10dp"/>
 
     <Button
         android:id="@+id/btnRefresh"
@@ -39,16 +14,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Refresh"
-        android:layout_toRightOf="@+id/btnCreate"
-        android:layout_below="@+id/etDescription"/>
-
-    <Button
-        android:id="@+id/btnCapture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Capture"
-        android:layout_toRightOf="@+id/btnRefresh"
         android:layout_below="@+id/etDescription"/>
 
     <Button
@@ -57,9 +22,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Log Out"
-        android:layout_below="@+id/btnRefresh"/>
+        android:layout_toRightOf="@+id/btnRefresh"/>
 
-
-
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Create"
+        android:layout_toRightOf="@+id/btnLogout"/>
 
 </RelativeLayout>
