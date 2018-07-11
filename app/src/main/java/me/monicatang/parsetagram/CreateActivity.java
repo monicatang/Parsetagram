@@ -116,7 +116,7 @@ public class CreateActivity extends AppCompatActivity {
                 // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 // RESIZE BITMAP, see section below
-                Bitmap bMapScaled = bitmapScaler.scaleToFill(takenImage, 250, 250);
+                Bitmap bMapScaled = bitmapScaler.scaleToFitHeight(takenImage, 250);
                 // Configure byte output stream
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 // Compress the image further
