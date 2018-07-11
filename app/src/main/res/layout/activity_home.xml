@@ -32,4 +32,12 @@
         android:text="Create"
         android:layout_toRightOf="@+id/btnLogout"/>
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvFeed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/btnCreate" />
+
 </RelativeLayout>

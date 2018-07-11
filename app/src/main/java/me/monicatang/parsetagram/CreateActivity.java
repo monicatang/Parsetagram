@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 import me.monicatang.parsetagram.model.Post;
 
 public class CreateActivity extends AppCompatActivity {
-    
+
     private static String newPath = "";
     private BitmapScaler bitmapScaler = new BitmapScaler();
 

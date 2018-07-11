@@ -3,6 +3,8 @@ package me.monicatang.parsetagram;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -19,12 +22,14 @@ import me.monicatang.parsetagram.model.Post;
 
 public class HomeActivity extends AppCompatActivity {
 
+    ArrayList<Post> posts;
+    PostAdapter postAdapter;
 
     // Views
     @BindView(R.id.btnRefresh) Button btnRefresh;
     @BindView(R.id.btnLogout) Button btnLogout;
     @BindView(R.id.btnCreate) Button btnCreate;
-
+    @BindView(R.id.rvFeed) RecyclerView rvFeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,14 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         ButterKnife.bind(this);
+
+        //init Array List (data source)
+        posts = new ArrayList<>();
+        // construct adapter from data source
+        postAdapter = new PostAdapter(posts);
+        // recyclerView setup (layout manager, use adapter)
+        rvFeed.setLayoutManager(new LinearLayoutManager(this));
+        rvFeed.setAdapter(postAdapter);
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +97,8 @@ public class HomeActivity extends AppCompatActivity {
                                 + objects.get(i).getDescription()
                                 + "\nusername =" + objects.get(i).getUser().getUsername());
                     }
+                    postAdapter.addAll(objects);
+                    postAdapter.notifyDataSetChanged();
                 } else {
                     e.printStackTrace();
                 }
