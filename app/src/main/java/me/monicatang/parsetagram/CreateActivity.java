@@ -129,7 +129,7 @@ public class CreateActivity extends AppCompatActivity {
                 // Configure byte output stream
                 ByteArrayOutputStream bytes = new ByteArrayOutputStream();
                 // Compress the image further
-                bMapScaled.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+                bMapScaled.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
                 // Create a new file for the resized bitmap (`getPhotoFileUri` defined above)
                 File resizedFile = getPhotoFileUri(photoFileName + "_resized");
                 try {

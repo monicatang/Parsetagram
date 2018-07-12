@@ -2,14 +2,15 @@ package me.monicatang.parsetagram;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.view.MenuItem;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
@@ -29,11 +30,10 @@ public class HomeActivity extends AppCompatActivity {
     PostAdapter postAdapter;
 
     // Views
-    @BindView(R.id.btnLogout) Button btnLogout;
-    @BindView(R.id.btnCreate) Button btnCreate;
     @BindView(R.id.rvFeed) RecyclerView rvFeed;
     @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.bottom_navigation) BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,26 +49,11 @@ public class HomeActivity extends AppCompatActivity {
 
         // init Array List (data source)
         posts = new ArrayList<>();
-        // construct adapter from data source
+        // construct adapter from data shtulvjrelrkvklbnhjfugtcrrhrtrcveource
         postAdapter = new PostAdapter(posts);
         // recyclerView setup (layout manager, use adapter)
         rvFeed.setLayoutManager(new LinearLayoutManager(this));
         rvFeed.setAdapter(postAdapter);
-
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(HomeActivity.this, CreateActivity.class);
-                startActivity(i);
-            }
-        });
-
-        btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                logOut();
-            }
-        });
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -83,6 +68,25 @@ public class HomeActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_home:
+                                break;
+                            case R.id.action_create:
+                                Intent i = new Intent(HomeActivity.this, CreateActivity.class);
+                                startActivity(i);
+                                break;
+                            case R.id.action_profile:
+                                logOut();
+                                break;
+                        }
+                        return true;
+                    }
+                });
 
         loadTopPosts();
     }
