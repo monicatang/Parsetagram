@@ -14,7 +14,6 @@ import android.view.MenuItem;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +80,8 @@ public class HomeActivity extends AppCompatActivity {
                                 startActivity(i);
                                 break;
                             case R.id.action_profile:
-                                logOut();
+                                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                                startActivity(intent);
                                 break;
                         }
                         return true;
@@ -91,16 +91,16 @@ public class HomeActivity extends AppCompatActivity {
         loadTopPosts();
     }
 
-    private void logOut() {
-        ParseUser.logOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
-        if(ParseUser.getCurrentUser() == null) {
-            Log.i("Logout", "Log out successful"); // this will now be null
-        }
-
-    }
+//    private void logOut() {
+//        ParseUser.logOut();
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
+//        finish();
+//        if(ParseUser.getCurrentUser() == null) {
+//            Log.i("Logout", "Log out successful"); // this will now be null
+//        }
+//
+//    }
 
     private void loadTopPosts() {
         final Post.Query postsQuery = new Post.Query();
