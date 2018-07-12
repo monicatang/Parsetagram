@@ -8,7 +8,6 @@
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         app:srcCompat="@android:color/black" />
 
     <TextView
@@ -36,10 +35,10 @@
         android:id="@+id/tvRelativeTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/ivImage"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="20dp"
         android:layout_below="@+id/tvDescription"
         android:text="Relative Time" />
 

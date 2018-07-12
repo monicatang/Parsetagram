@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.monicatang.parsetagram.model.Post;
 
+
 public class HomeActivity extends AppCompatActivity {
 
     ArrayList<Post> posts;
@@ -31,15 +33,21 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.btnCreate) Button btnCreate;
     @BindView(R.id.rvFeed) RecyclerView rvFeed;
     @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.toolbar) Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // resolve view lookups
         ButterKnife.bind(this);
 
-        //init Array List (data source)
+        // set action bar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        // init Array List (data source)
         posts = new ArrayList<>();
         // construct adapter from data source
         postAdapter = new PostAdapter(posts);

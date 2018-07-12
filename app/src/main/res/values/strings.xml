@@ -4,4 +4,7 @@
     <string name="title_activity_home">HomeActivity</string>
     <string name="description_hint">Enter a description</string>
     <string name="signup">Sign Up</string>
+    <string name="home">Home</string>
+    <string name="create">Create</string>
+    <string name="profile">Profile</string>
 </resources>

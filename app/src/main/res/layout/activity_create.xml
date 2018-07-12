@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".CreateActivity">
 
+    <include
+        layout="@layout/toolbar"
+        android:id="@+id/toolbar_include"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ProgressBar
         android:id="@+id/pbLoading"
         android:visibility="invisible"
@@ -19,8 +25,8 @@
         android:id="@+id/ivPreview"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_below="@id/toolbar_include"
         android:background="@color/grey_1_80_transparent"
         app:srcCompat="@drawable/camera_shadow_fill" />
 

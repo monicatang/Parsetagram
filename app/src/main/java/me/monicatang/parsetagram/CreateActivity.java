@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +48,8 @@ public class CreateActivity extends AppCompatActivity {
     @BindView(R.id.ivPreview) ImageView ivPreview;
     @BindView(R.id.etDescription) EditText etDescription;
     @BindView(R.id.pbLoading) ProgressBar pbLoading;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,10 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
 
         ButterKnife.bind(this);
+
+        // set action bar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         // Set on click listeners
         btnPost.setOnClickListener(new View.OnClickListener() {
