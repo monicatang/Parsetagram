@@ -40,7 +40,7 @@
         <activity android:name=".CreateActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ProfileActivity" />
     </application>
 
 </manifest>

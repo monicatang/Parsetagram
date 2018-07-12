@@ -49,11 +49,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         //populate views
         holder.tvDescription.setText(post.getDescription());
         holder.tvUsername.setText(post.getUser().getUsername());
-        holder.tvRelativeTime.setText(post.getCreatedAt().toString());
+
+        String rawTime = post.getCreatedAt().toString();
+
+        holder.tvRelativeTime.setText(post.getRelativeTimeAgo(rawTime));
 
         Glide.with(context).load(post.getImage().getUrl()).into(holder.ivImage);
 
     }
+
 
     @Override
     public int getItemCount() {

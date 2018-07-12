@@ -40,7 +40,7 @@ public class DetailsActivity extends AppCompatActivity {
         //populate views
         tvDescription.setText(post.getDescription());
         tvUsername.setText(post.getUser().getUsername());
-        tvTime.setText(post.getCreatedAt().toString());
+        tvTime.setText(post.getRelativeTimeAgo(post.getCreatedAt().toString()));
 
         Glide.with(this).load(post.getImage().getUrl()).into(ivImage);
     }
