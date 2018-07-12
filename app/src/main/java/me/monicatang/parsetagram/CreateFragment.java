@@ -7,11 +7,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,7 +34,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.monicatang.parsetagram.model.Post;
 
-public class CreateActivity extends AppCompatActivity {
+import static android.app.Activity.RESULT_OK;
+
+
+public class CreateFragment extends Fragment {
 
     private static String newPath = "";
     private BitmapScaler bitmapScaler = new BitmapScaler();
@@ -43,24 +48,33 @@ public class CreateActivity extends AppCompatActivity {
     public String photoFileName = "photo.jpg";
     File photoFile;
 
-    @BindView(R.id.btnPost) Button btnPost;
+    @BindView(R.id.btnPost)
+    Button btnPost;
     @BindView(R.id.btnCapture) Button btnCapture;
-    @BindView(R.id.ivPreview) ImageView ivPreview;
-    @BindView(R.id.etDescription) EditText etDescription;
-    @BindView(R.id.pbLoading) ProgressBar pbLoading;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
+    @BindView(R.id.ivPreview)
+    ImageView ivPreview;
+    @BindView(R.id.etDescription)
+    EditText etDescription;
+    @BindView(R.id.pbLoading)
+    ProgressBar pbLoading;
+    // The onCreateView method is called when Fragment should create its View object hierarchy,
+    // either dynamically or via XML layout inflation.
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create);
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
+        // Defines the xml file for the fragment
+        return inflater.inflate(R.layout.fragment_create, parent, false);
 
-        ButterKnife.bind(this);
 
-        // set action bar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+
+    // This event is triggered soon after onCreateView().
+    // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        // Setup any handles to view objects here
+        // EditText etFoo = (EditText) view.findViewById(R.id.etFoo);
+
+        ButterKnife.bind(this, view);
 
         // Set on click listeners
         btnPost.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +92,6 @@ public class CreateActivity extends AppCompatActivity {
         });
     }
 
-
     // Take a photo
     public void onLaunchCamera(View view) {
         // create Intent to take a picture and return control to the calling application
@@ -89,12 +102,12 @@ public class CreateActivity extends AppCompatActivity {
         // wrap File object into a content provider
         // required for API >= 24
         // See https://guides.codepath.com/android/Sharing-Content-with-Intents#sharing-files-with-api-24-or-higher
-        Uri fileProvider = FileProvider.getUriForFile(CreateActivity.this, "com.codepath.fileprovider", photoFile);
+        Uri fileProvider = FileProvider.getUriForFile(view.getContext(), "com.codepath.fileprovider", photoFile);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileProvider);
 
         // If you call startActivityForResult() using an intent that no app can handle, your app will crash.
         // So as long as the result is not null, it's safe to use the intent.
-        if (intent.resolveActivity(getPackageManager()) != null) {
+        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
             // Start the image capture intent to take photo
             startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
         }
@@ -105,7 +118,7 @@ public class CreateActivity extends AppCompatActivity {
         // Get safe storage directory for photos
         // Use `getExternalFilesDir` on Context to access package-specific directories.
         // This way, we don't need to request external read/write runtime permissions.
-        File mediaStorageDir = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
+        File mediaStorageDir = new File(getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES), APP_TAG);
 
         // Create the storage directory if it does not exist
         if (!mediaStorageDir.exists() && !mediaStorageDir.mkdirs()){
@@ -145,7 +158,7 @@ public class CreateActivity extends AppCompatActivity {
                 // Load the taken image into a preview
                 ivPreview.setImageBitmap(bMapScaled);
             } else { // Result was a failure
-                Toast.makeText(this, "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -184,15 +197,18 @@ public class CreateActivity extends AppCompatActivity {
             public void done(ParseException e) {
                 if (e == null) {
                     Log.d("HomeActivity", "Create post success!");
-                    Intent i = new Intent(CreateActivity.this, HomeActivity.class);
+                    // Begin the transaction
+                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+                    // Replace the contents of the container with the new fragment
+                    ft.replace(R.id.feed, new FeedFragment());
+                    // or ft.add(R.id.your_placeholder, new FooFragment());
+                    // Complete the changes added above
+                    ft.commit();
                     pbLoading.setVisibility(ProgressBar.INVISIBLE);
-                    startActivity(i);
-                    finish();
                 } else {
                     e.printStackTrace();
                 }
             }
         });
     }
-
 }

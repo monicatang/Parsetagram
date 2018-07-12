@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -30,16 +32,24 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        final FragmentManager fragmentManager = getSupportFragmentManager();
+
+        // define your fragments here
+        final Fragment fragment1 = new FeedFragment();
+        final Fragment fragment2 = new CreateFragment();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_home:
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.replace(R.id.feed, fragment1).commit();
                                 break;
                             case R.id.action_create:
-                                Intent i = new Intent(HomeActivity.this, CreateActivity.class);
-                                startActivity(i);
+                                FragmentTransaction ft2 = fragmentManager.beginTransaction();
+                                ft2.replace(R.id.feed, fragment2).commit();
                                 break;
                             case R.id.action_profile:
                                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);

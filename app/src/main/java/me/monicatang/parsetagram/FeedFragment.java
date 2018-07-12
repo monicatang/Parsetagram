@@ -52,7 +52,12 @@ public class FeedFragment extends Fragment {
         // construct adapter from data
         postAdapter = new PostAdapter(posts);
         // recyclerView setup (layout manager, use adapter)
-        rvFeed.setLayoutManager(new LinearLayoutManager(getActivity()));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        rvFeed.setLayoutManager(mLayoutManager);
+
         rvFeed.setAdapter(postAdapter);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
