@@ -48,15 +48,11 @@ public class CreateFragment extends Fragment {
     public String photoFileName = "photo.jpg";
     File photoFile;
 
-    @BindView(R.id.btnPost)
-    Button btnPost;
+    @BindView(R.id.btnPost) Button btnPost;
     @BindView(R.id.btnCapture) Button btnCapture;
-    @BindView(R.id.ivPreview)
-    ImageView ivPreview;
-    @BindView(R.id.etDescription)
-    EditText etDescription;
-    @BindView(R.id.pbLoading)
-    ProgressBar pbLoading;
+    @BindView(R.id.ivPreview) ImageView ivPreview;
+    @BindView(R.id.etDescription) EditText etDescription;
+    @BindView(R.id.pbLoading) ProgressBar pbLoading;
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
     @Override

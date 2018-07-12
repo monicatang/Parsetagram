@@ -1,6 +1,5 @@
 package me.monicatang.parsetagram;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -37,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         // define your fragments here
         final Fragment fragment1 = new FeedFragment();
         final Fragment fragment2 = new CreateFragment();
+        final Fragment fragment3 = new ProfileFragment();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -44,16 +44,16 @@ public class HomeActivity extends AppCompatActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_home:
-                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                fragmentTransaction.replace(R.id.feed, fragment1).commit();
+                                FragmentTransaction ft1 = fragmentManager.beginTransaction();
+                                ft1.replace(R.id.feed, fragment1).commit();
                                 break;
                             case R.id.action_create:
                                 FragmentTransaction ft2 = fragmentManager.beginTransaction();
                                 ft2.replace(R.id.feed, fragment2).commit();
                                 break;
                             case R.id.action_profile:
-                                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
-                                startActivity(intent);
+                                FragmentTransaction ft3 = fragmentManager.beginTransaction();
+                                ft3.replace(R.id.feed, fragment3).commit();
                                 break;
                         }
                         return true;
