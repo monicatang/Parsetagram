@@ -6,45 +6,76 @@
     android:layout_height="match_parent"
     tools:context=".CreateFragment">
 
-    <ProgressBar
-        android:id="@+id/pbLoading"
-        android:visibility="invisible"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@anim/progress"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/ivPreview"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_gravity="top"
-        android:background="@color/grey_1_80_transparent"
-        app:srcCompat="@drawable/camera_shadow_fill" />
+        <ProgressBar
+            android:id="@+id/pbLoading"
+            android:visibility="invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@anim/progress"/>
 
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/description_hint"
-        android:inputType="textMultiLine"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="250dp"/>
+        <ImageView
+            android:id="@+id/ivPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="250dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/grey_1_80_transparent"
+            app:srcCompat="@drawable/camera_shadow_fill" />
 
-    <Button
-        android:id="@+id/btnPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="10dp"/>
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etDescriptionLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivPreview"
+            style="@style/TextAppearance.App.TextInputLayout">
 
-    <Button
-        android:id="@+id/btnCapture"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginLeft="105dp"
-        android:text="Capture" />
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/description_hint"
+                android:inputType="textMultiLine"
+                android:layout_margin="15dp"
+                android:singleLine="false"
+                style="@style/TextAppearance.App.TextInputLayout"/>
 
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post"
+            android:visibility="invisible"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/etDescriptionLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btnCapture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="visible"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/etDescriptionLayout"
+            android:text="Capture" />
+
+        <Button
+            android:id="@+id/btnRetake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/btnCapture"
+            android:visibility="invisible"
+            android:layout_margin="10dp"
+            android:text="@string/retake" />
+
+    </RelativeLayout>
 </FrameLayout>

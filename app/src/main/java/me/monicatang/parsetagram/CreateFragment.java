@@ -53,6 +53,7 @@ public class CreateFragment extends Fragment {
     @BindView(R.id.ivPreview) ImageView ivPreview;
     @BindView(R.id.etDescription) EditText etDescription;
     @BindView(R.id.pbLoading) ProgressBar pbLoading;
+    @BindView(R.id.btnRetake) Button btnRetake;
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
     // either dynamically or via XML layout inflation.
@@ -82,6 +83,13 @@ public class CreateFragment extends Fragment {
         });
 
         btnCapture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onLaunchCamera(view);
+            }
+        });
+
+        btnRetake.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onLaunchCamera(view);
@@ -154,6 +162,9 @@ public class CreateFragment extends Fragment {
                 newPath = resizedFile.getAbsolutePath();
                 // Load the taken image into a preview
                 ivPreview.setImageBitmap(bMapScaled);
+                btnPost.setVisibility(View.VISIBLE);
+                btnCapture.setVisibility(View.INVISIBLE);
+                btnRetake.setVisibility(View.VISIBLE);
             } else { // Result was a failure
                 Toast.makeText(getActivity(), "Picture wasn't taken!", Toast.LENGTH_SHORT).show();
             }
