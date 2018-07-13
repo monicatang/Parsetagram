@@ -2,9 +2,11 @@ package me.monicatang.parsetagram;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
@@ -66,6 +69,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
         Glide.with(context).load(post.getImage().getUrl()).into(holder.ivImage);
 
+        Glide.with(context).load(R.drawable.user_placeholder)
+                .apply(RequestOptions.circleCropTransform()).into(holder.ivProfileImage);
+
     }
 
 
@@ -87,6 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         @BindView(R.id.ivSave) ImageView ivSave;
         @BindView(R.id.tvUsernameHeader) TextView tvUsernameHeader;
         @BindView(R.id.ivMedia) ImageView ivMedia;
+        @BindView(R.id.ivProfileImage) ImageView ivProfileImage;
 
         private List<Post> mPosts;
 
@@ -110,7 +117,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
                 Post post = mPosts.get(position);
                 FragmentTransaction ft = ((HomeActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
                 DetailsFragment dFragment = DetailsFragment.newInstance(post);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    dFragment.setSharedElementEnterTransition(new DetailsTransition());
+                    dFragment.setEnterTransition(new Fade());
+                    dFragment.setExitTransition(new Fade());
+                    dFragment.setSharedElementReturnTransition(new DetailsTransition());
+                }
                 ft.addToBackStack("details");
+                ft.addSharedElement(ivProfileImage, "image");
                 ft.replace(R.id.feed, dFragment);
                 ft.commit();
             }

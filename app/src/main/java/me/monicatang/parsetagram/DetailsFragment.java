@@ -1,5 +1,6 @@
 package me.monicatang.parsetagram;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,6 +29,7 @@ public class DetailsFragment extends Fragment {
     @BindView(R.id.ivSave) ImageView ivSave;
     @BindView(R.id.tvUsernameHeader) TextView tvUsernameHeader;
     @BindView(R.id.ivMedia) ImageView ivMedia;
+    @BindView(R.id.ivProfileImage) ImageView ivProfileImage;
 
     public static DetailsFragment newInstance(Post post) {
         DetailsFragment detailsFragment = new DetailsFragment();
@@ -55,6 +58,7 @@ public class DetailsFragment extends Fragment {
         // unwrap post
         Post post = getArguments().getParcelable("post");
         String username = post.getUser().getUsername();
+        Context context = view.getContext();
 
         //populate views
         tvDescription.setText(post.getDescription());
@@ -70,6 +74,9 @@ public class DetailsFragment extends Fragment {
 
         tvRelativeTime.setText(post.getRelativeTimeAgo(rawTime));
 
-        Glide.with(view.getContext()).load(post.getImage().getUrl()).into(ivImage);
+        Glide.with(context).load(post.getImage().getUrl()).into(ivImage);
+
+        Glide.with(context).load(R.drawable.user_placeholder)
+                .apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
     }
 }

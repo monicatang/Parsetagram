@@ -15,14 +15,23 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="wrap_content" android:layout_height="wrap_content">
 
+            <ImageView
+                android:id="@+id/ivProfileImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="9dp"
+                android:layout_marginBottom="9dp"/>
+
             <TextView
                 android:id="@+id/tvUsernameHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/toolbar_include"
-                android:layout_margin="12dp"
+                android:layout_toRightOf="@+id/ivProfileImage"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="10dp"
                 android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 tools:text="Username" />
@@ -32,7 +41,9 @@
                 android:layout_width="@dimen/icon_size_small"
                 android:layout_height="@dimen/icon_size_small"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="12dp" />
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="12dp" />
 
             <ImageView
                 android:id="@+id/ivImage"
