@@ -4,11 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content" android:layout_height="wrap_content">
 
+    <TextView
+        android:id="@+id/tvUsernameHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_margin="12dp"
+        android:text="TextView"
+        android:textStyle="bold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:text="Username" />
+
+    <ImageView
+        android:id="@+id/ivMedia"
+        android:layout_width="@dimen/icon_size_small"
+        android:layout_height="@dimen/icon_size_small"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp" />
+
     <ImageView
         android:id="@+id/ivImage"
-        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tvUsernameHeader"
         app:srcCompat="@android:color/black" />
 
     <ImageView
@@ -52,7 +70,6 @@
         style="@style/body"
         android:text="TextView"
         android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         tools:text="Username" />
 
     <TextView

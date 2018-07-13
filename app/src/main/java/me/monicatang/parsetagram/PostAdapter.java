@@ -45,14 +45,17 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Post post = mPosts.get(position);
+        String username = post.getUser().getUsername();
 
         //populate views
         holder.tvDescription.setText(post.getDescription());
-        holder.tvUsername.setText(post.getUser().getUsername());
+        holder.tvUsername.setText(username);
         holder.ivHeart.setImageResource(R.drawable.ufi_heart);
         holder.ivDirect.setImageResource(R.drawable.direct);
         holder.ivComment.setImageResource(R.drawable.ufi_comment);
         holder.ivSave.setImageResource(R.drawable.ufi_save);
+        holder.tvUsernameHeader.setText(username);
+        holder.ivMedia.setImageResource(R.drawable.media_option_button);
 
         String rawTime = post.getCreatedAt().toString();
 
@@ -79,6 +82,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
         @BindView(R.id.ivDirect) ImageView ivDirect;
         @BindView(R.id.ivComment) ImageView ivComment;
         @BindView(R.id.ivSave) ImageView ivSave;
+        @BindView(R.id.tvUsernameHeader) TextView tvUsernameHeader;
+        @BindView(R.id.ivMedia) ImageView ivMedia;
 
         private List<Post> mPosts;
 
