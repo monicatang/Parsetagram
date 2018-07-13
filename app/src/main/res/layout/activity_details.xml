@@ -24,12 +24,44 @@
             android:layout_below="@id/toolbar_include"
             app:srcCompat="@android:color/black" />
 
+        <ImageView
+            android:id="@+id/ivHeart"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_alignStart="@+id/ivImage"
+            android:layout_margin="10dp"
+            android:layout_below="@+id/ivImage" />
+
+        <ImageView
+            android:id="@+id/ivComment"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_toEndOf="@+id/ivHeart"
+            android:layout_below="@+id/ivImage"
+            android:layout_margin="10dp" />
+
+        <ImageView
+            android:id="@+id/ivDirect"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_toEndOf="@+id/ivComment"
+            android:layout_below="@+id/ivImage"
+            android:layout_margin="10dp"/>
+
+        <ImageView
+            android:id="@+id/ivSave"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_below="@+id/ivImage"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="10dp" />
+
         <TextView
             android:id="@+id/tvUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/ivImage"
-            android:layout_below="@+id/ivImage"
+            android:layout_below="@+id/ivSave"
             android:layout_margin="10dp"
             android:text="TextView"
             android:textStyle="bold"

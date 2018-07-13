@@ -18,6 +18,10 @@ public class DetailsActivity extends AppCompatActivity {
     @BindView(R.id.tvUsername) TextView tvUsername;
     @BindView(R.id.tvDescription) TextView tvDescription;
     @BindView(R.id.tvTime) TextView tvTime;
+    @BindView(R.id.ivHeart) ImageView ivHeart;
+    @BindView(R.id.ivDirect) ImageView ivDirect;
+    @BindView(R.id.ivComment) ImageView ivComment;
+    @BindView(R.id.ivSave) ImageView ivSave;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
@@ -41,6 +45,10 @@ public class DetailsActivity extends AppCompatActivity {
         tvDescription.setText(post.getDescription());
         tvUsername.setText(post.getUser().getUsername());
         tvTime.setText(post.getRelativeTimeAgo(post.getCreatedAt().toString()));
+        ivHeart.setImageResource(R.drawable.ufi_heart);
+        ivDirect.setImageResource(R.drawable.direct);
+        ivComment.setImageResource(R.drawable.ufi_comment);
+        ivSave.setImageResource(R.drawable.ufi_save);
 
         Glide.with(this).load(post.getImage().getUrl()).into(ivImage);
     }
