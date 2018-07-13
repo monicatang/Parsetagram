@@ -74,7 +74,7 @@ public class Post extends ParseObject {
             e.printStackTrace();
         }
 
-        return relativeDate;
+        return relativeDate.toUpperCase();
     }
 
 

@@ -29,7 +29,7 @@
             android:layout_width="@dimen/icon_size"
             android:layout_height="@dimen/icon_size"
             android:layout_alignStart="@+id/ivImage"
-            android:layout_margin="10dp"
+            style="@style/icon"
             android:layout_below="@+id/ivImage" />
 
         <ImageView
@@ -38,7 +38,7 @@
             android:layout_height="@dimen/icon_size"
             android:layout_toEndOf="@+id/ivHeart"
             android:layout_below="@+id/ivImage"
-            android:layout_margin="10dp" />
+            style="@style/icon"/>
 
         <ImageView
             android:id="@+id/ivDirect"
@@ -46,7 +46,7 @@
             android:layout_height="@dimen/icon_size"
             android:layout_toEndOf="@+id/ivComment"
             android:layout_below="@+id/ivImage"
-            android:layout_margin="10dp"/>
+            style="@style/icon"/>
 
         <ImageView
             android:id="@+id/ivSave"
@@ -54,7 +54,7 @@
             android:layout_height="@dimen/icon_size"
             android:layout_below="@+id/ivImage"
             android:layout_alignParentEnd="true"
-            android:layout_margin="10dp" />
+            style="@style/icon" />
 
         <TextView
             android:id="@+id/tvUsername"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/ivImage"
             android:layout_below="@+id/ivSave"
-            android:layout_margin="10dp"
+            style="@style/body"
             android:text="TextView"
             android:textStyle="bold"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -82,11 +82,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/ivImage"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="20dp"
             android:layout_below="@+id/tvDescription"
-            android:text="Time" />
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Time"
+            android:textSize="10sp" />
 
     </RelativeLayout>
 
