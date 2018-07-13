@@ -50,7 +50,7 @@ public class FeedFragment extends Fragment {
         // init Array List (data source)
         posts = new ArrayList<>();
         // construct adapter from data
-        postAdapter = new PostAdapter(posts);
+        postAdapter = new PostAdapter(posts, getActivity());
         // recyclerView setup (layout manager, use adapter)
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.setReverseLayout(true);

@@ -1,8 +1,9 @@
 package me.monicatang.parsetagram;
 
+import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,9 +24,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
 
     private List<Post> mPosts;
     public Context context;
+    public Activity activity;
 
-    public PostAdapter(List<Post> posts){
+    public PostAdapter(List<Post> posts, Activity activity){
         mPosts = posts;
+        this.activity = activity;
     }
 
     //for each row, inflate layout and cache references into ViewHolder
@@ -105,11 +108,11 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder>{
             if (position != RecyclerView.NO_POSITION) {
                 //get post at the position
                 Post post = mPosts.get(position);
-                Intent intent = new Intent(v.getContext(), DetailsActivity.class);
-                //serialize post using parceler
-                intent.putExtra(Post.class.getSimpleName(), post);
-                //show activity
-                v.getContext().startActivity(intent);
+                FragmentTransaction ft = ((HomeActivity) v.getContext()).getSupportFragmentManager().beginTransaction();
+                DetailsFragment dFragment = DetailsFragment.newInstance(post);
+                ft.addToBackStack("details");
+                ft.replace(R.id.feed, dFragment);
+                ft.commit();
             }
         }
 
