@@ -45,14 +45,18 @@ public class HomeActivity extends AppCompatActivity {
                         switch (item.getItemId()) {
                             case R.id.action_home:
                                 FragmentTransaction ft1 = fragmentManager.beginTransaction();
+                                // Append this transaction to the backstack
+                                ft1.addToBackStack("feed");
                                 ft1.replace(R.id.feed, fragment1).commit();
                                 break;
                             case R.id.action_create:
                                 FragmentTransaction ft2 = fragmentManager.beginTransaction();
+                                ft2.addToBackStack("feed");
                                 ft2.replace(R.id.feed, fragment2).commit();
                                 break;
                             case R.id.action_profile:
                                 FragmentTransaction ft3 = fragmentManager.beginTransaction();
+                                ft3.addToBackStack("feed");
                                 ft3.replace(R.id.feed, fragment3).commit();
                                 break;
                         }

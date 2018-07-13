@@ -6,16 +6,49 @@
 
     <ImageView
         android:id="@+id/ivImage"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/ivHeart"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_alignStart="@+id/ivImage"
+        android:layout_margin="10dp"
+        android:layout_below="@+id/ivImage" />
+
+    <ImageView
+        android:id="@+id/ivComment"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_toRightOf="@+id/ivHeart"
+        android:layout_below="@+id/ivImage"
+        android:layout_margin="10dp" />
+
+    <ImageView
+        android:id="@+id/ivDirect"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_toRightOf="@+id/ivComment"
+        android:layout_below="@+id/ivImage"
+        android:layout_margin="10dp"/>
+
+    <ImageView
+        android:id="@+id/ivSave"
+        android:layout_width="@dimen/icon_size"
+        android:layout_height="@dimen/icon_size"
+        android:layout_below="@+id/ivImage"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/ivImage"
-        android:layout_below="@+id/ivImage"
+        android:layout_below="@+id/ivDirect"
         android:layout_margin="10dp"
         android:text="TextView"
         android:textStyle="bold"
@@ -26,7 +59,6 @@
         android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivImage"
         android:layout_marginLeft="10dp"
         android:layout_below="@+id/tvUsername"
         android:text="Description" />
@@ -35,7 +67,6 @@
         android:id="@+id/tvRelativeTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/ivImage"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="20dp"

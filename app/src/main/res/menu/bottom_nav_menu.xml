@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/action_home"
-        android:icon="@drawable/instagram_home_outline_24"
-        android:background="@drawable/selector"
-        android:title="@string/home" />
+        android:icon="@drawable/home_selector"
+        tools:ignore="MenuTitle" />
     <item
         android:id="@+id/action_create"
-        android:icon="@drawable/instagram_new_post_outline_24"
-        android:title="@string/create" />
+        android:icon="@drawable/new_post_selector"
+        tools:ignore="MenuTitle" />
     <item
         android:id="@+id/action_profile"
-        android:icon="@drawable/instagram_user_outline_24"
-        android:title="@string/profile" />
+        android:icon="@drawable/user_selector"
+        tools:ignore="MenuTitle" />
 
 </menu>
